@@ -1,0 +1,16 @@
+# Ignore node_modules and build folders
+node_modules/
+.next/
+out/
+
+# Ignore log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore environment files
+.env
+.env.local
+
+# Mac system files
+.DS_Store
