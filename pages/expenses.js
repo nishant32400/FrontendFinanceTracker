@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-
+const baseURL =  'https://backendfinancetracker-umjc.onrender.com';
 export default function Expenses() {
   const [expenses, setExpenses] = useState([]);
   const [form, setForm] = useState({ amount: '', category: '', date: '', paymentMethod: '', notes: '', id: null });
@@ -16,7 +16,7 @@ export default function Expenses() {
   }, []);
 
   const fetchExpenses = async (authToken) => {
-    const res = await axios.get('http://localhost:5000/api/expenses', {
+    const res = await axios.get('${baseURL}/api/expenses', {
       headers: { Authorization: 'Bearer ' + authToken }
     });
     setExpenses(res.data);
@@ -25,8 +25,8 @@ export default function Expenses() {
   const saveExpense = async () => {
     const method = form.id ? 'put' : 'post';
     const url = form.id
-      ? `http://localhost:5000/api/expenses/${form.id}`
-      : 'http://localhost:5000/api/expenses';
+      ? `${baseURL}/api/expenses/${form.id}`
+      : '${baseURL}/api/expenses';
 
     await axios[method](url, form, {
       headers: { Authorization: 'Bearer ' + token }
@@ -39,7 +39,7 @@ export default function Expenses() {
   const editExpense = (exp) => setForm({ ...exp, id: exp._id });
 
   const deleteExpense = async (id) => {
-    await axios.delete(`http://localhost:5000/api/expenses/${id}`, {
+    await axios.delete(`${baseURL}/api/expenses/${id}`, {
       headers: { Authorization: 'Bearer ' + token }
     });
     fetchExpenses(token);
