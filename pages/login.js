@@ -6,7 +6,7 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const handleLogin = async () => {
-    const res = await axios.post('{baseURL}/api/auth/login', { email, password });
+    const res = await axios.post(`${baseURL}/api/auth/login`, { email, password });
     localStorage.setItem('token', res.data.token);
     window.location.href = '/dashboard';
   };
