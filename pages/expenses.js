@@ -16,7 +16,7 @@ export default function Expenses() {
   }, []);
 
   const fetchExpenses = async (authToken) => {
-    const res = await axios.get('${baseURL}/api/expenses', {
+    const res = await axios.get(`${baseURL}/api/expenses`, {
       headers: { Authorization: 'Bearer ' + authToken }
     });
     setExpenses(res.data);
@@ -26,7 +26,7 @@ export default function Expenses() {
     const method = form.id ? 'put' : 'post';
     const url = form.id
       ? `${baseURL}/api/expenses/${form.id}`
-      : '${baseURL}/api/expenses';
+      : `${baseURL}/api/expenses`;
 
     await axios[method](url, form, {
       headers: { Authorization: 'Bearer ' + token }
