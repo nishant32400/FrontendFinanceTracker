@@ -1,12 +1,12 @@
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
+const baseURL =  'https://backendfinancetracker-umjc.onrender.com';
 export default function AdminDashboard() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/admin')
+    axios.get('${baseURL}/api/admin')
       .then(res => setUsers(res.data))
       .catch(err => console.error(err));
   }, []);
