@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { PieChart, Pie, Cell, Tooltip, LineChart, Line, XAxis, YAxis, CartesianGrid } from 'recharts';
-
+const baseURL =  'https://backendfinancetracker-umjc.onrender.com';
 export default function Dashboard() {
   const [expenses, setExpenses] = useState([]);
   const [total, setTotal] = useState(0);
@@ -11,7 +11,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    axios.get('http://localhost:5000/api/expenses', { headers: { Authorization: `Bearer ${token}` } })
+    axios.get('${baseURL}/api/expenses', { headers: { Authorization: `Bearer ${token}` } })
       .then(res => {
         setExpenses(res.data);
         const totalSpent = res.data.reduce((acc, e) => acc + e.amount, 0);
