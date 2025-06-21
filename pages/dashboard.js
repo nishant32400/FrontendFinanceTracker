@@ -11,7 +11,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    axios.get('${baseURL}/api/expenses', { headers: { Authorization: `Bearer ${token}` } })
+    axios.get(`${baseURL}/api/expenses`, { headers: { Authorization: `Bearer ${token}` } })
       .then(res => {
         setExpenses(res.data);
         const totalSpent = res.data.reduce((acc, e) => acc + e.amount, 0);
