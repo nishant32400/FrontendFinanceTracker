@@ -6,7 +6,7 @@ export default function AdminDashboard() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    axios.get('${baseURL}/api/admin')
+    axios.get(`${baseURL}/api/admin`)
       .then(res => setUsers(res.data))
       .catch(err => console.error(err));
   }, []);
