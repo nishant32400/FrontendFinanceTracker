@@ -1,12 +1,12 @@
 
 import { useState } from 'react';
 import axios from 'axios';
-
+const baseURL =  'https://backendfinancetracker-umjc.onrender.com';
 export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const handleRegister = async () => {
-    await axios.post('http://localhost:5000/api/auth/register', { email, password });
+    await axios.post('${baseURL}/api/auth/register', { email, password });
     window.location.href = '/login';
   };
   return (
